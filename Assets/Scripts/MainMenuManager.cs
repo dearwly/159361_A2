@@ -1,20 +1,37 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // 重要：必须添加这一行才能使用场景管理器！
+using UnityEngine.SceneManagement; // 用于场景管理
+
+// 【新增】我们需要引入这个命名空间来使用编辑器专用的代码
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class MainMenuManager : MonoBehaviour
 {
-    // 这个函数将由“开始游戏”按钮来调用
+    // StartGame 函数保持不变
     public void StartGame()
     {
-        // 将 "Example" 替换成您自己的游戏场景的准确文件名
         SceneManager.LoadScene("Example"); 
     }
 
-    // 您也可以顺便为退出按钮添加一个函数
+    /// <summary>
+    /// 【修改后】的退出游戏函数
+    /// </summary>
     public void QuitGame()
     {
-        // 这行代码在编辑器中不会退出，但在最终生成出的游戏中会关闭程序
-        Debug.Log("请求退出游戏"); // 在编辑器中打印信息，方便我们确认按钮被按下了
-        Application.Quit();
+        Debug.Log("请求退出游戏");
+
+        // --- 使用条件编译指令 ---
+
+        // 【如果】我们当前是在Unity编辑器环境中运行
+        #if UNITY_EDITOR
+            // 就执行这条编辑器专用的指令，来停止播放模式
+            EditorApplication.isPlaying = false;
+        
+        // 【否则】（意味着这是在构建好的独立游戏包中运行）
+        #else
+            // 就执行真正的退出应用程序指令
+            Application.Quit();
+        #endif
     }
 }

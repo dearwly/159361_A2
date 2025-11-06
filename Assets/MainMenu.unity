@@ -199,6 +199,51 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3114062157890988091, guid: b75a79c6bf7b73e47b8a08e6d73d84b5, type: 3}
   m_PrefabInstance: {fileID: 1338993241773360038}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &110462268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 110462270}
+  - component: {fileID: 110462269}
+  m_Layer: 0
+  m_Name: SceneMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &110462269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110462268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47d8ed76f5f4c2f46b0eb3d53db9348c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BGMTrigger
+  sceneBGM: {fileID: 8300000, guid: 87de1c3a0b342774f8df75edf20bd466, type: 3}
+--- !u!4 &110462270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110462268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 39.78145, y: -4.73683, z: 20.35688}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &135177350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,6 +1050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e1d765c1eb2da44b0645e3e6abc832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  fadeDuration: 1
 --- !u!82 &2090931348
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1239,3 +1285,4 @@ SceneRoots:
   - {fileID: 135177354}
   - {fileID: 957462167}
   - {fileID: 2090931349}
+  - {fileID: 110462270}

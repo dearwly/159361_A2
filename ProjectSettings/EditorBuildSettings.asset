@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Mine/Example/Example.unity
     guid: 117fd0fe1401a1148a97cb9de246ad0a
+  - enabled: 1
+    path: Assets/Decrepit Dungeon LITE/EXAMPLE/Demo_Scene.unity
+    guid: 14a2c64dbd956d346b9f674d144cc297
+  - enabled: 1
+    path: Assets/Happyend.unity
+    guid: 41fc996c24b8dd14e88ac59a522df6fe
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

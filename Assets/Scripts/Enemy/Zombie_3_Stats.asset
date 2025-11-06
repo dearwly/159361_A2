@@ -23,5 +23,5 @@ MonoBehaviour:
   attackDamage: 15
   attackDamageRadius: 1.5
   hasScreamAndCharge: 0
-  chargeSpeed: 8
   chargeDuration: 3
+  replaceChaseWithCharge: 0
