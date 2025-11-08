@@ -97641,7 +97641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d8ed76f5f4c2f46b0eb3d53db9348c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BGMTrigger
-  sceneBGM: {fileID: 0}
+  sceneBGM: {fileID: 8300000, guid: b5764dbd75998b04cb8e0c13783f3fc4, type: 3}
 --- !u!4 &1498209419
 Transform:
   m_ObjectHideFlags: 0
