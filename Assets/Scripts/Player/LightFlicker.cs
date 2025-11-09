@@ -19,10 +19,10 @@ public class LightFlicker : MonoBehaviour
 
     void Update()
     {
-        // 使用 PerlinNoise 生成一个平滑的随机值，比完全随机更自然
+        
         float noise = Mathf.PerlinNoise(Time.time * flickerSpeed, 0);
         
-        // 将 0-1 的 noise 值映射到我们的最小/最大强度之间
+        
         _light.intensity = Mathf.Lerp(minIntensity, maxIntensity, noise);
     }
 }

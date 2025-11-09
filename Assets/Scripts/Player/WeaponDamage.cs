@@ -1,12 +1,12 @@
 using UnityEngine;
 
-// 这个脚本依然挂载在“剑”上
+
 public class WeaponDamage : MonoBehaviour
 {
-    public float baseDamageAmount = 25f; // 将名字改为基础伤害
+    public float baseDamageAmount = 25f; 
     private Collider weaponCollider;
-    private GameObject owner; // 新增：武器的主人
-    private PlayerStats ownerStats; // 新增：对主人状态的引用
+    private GameObject owner; 
+    private PlayerStats ownerStats; 
 
     void Awake()
     {
@@ -25,13 +25,13 @@ public class WeaponDamage : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        // 检查主人是否存在，并且碰到的不是主人自己或主人的子物体
+        
         if (owner != null && (other.gameObject == owner || other.transform.IsChildOf(owner.transform)))
         {
-            return; // 如果是自己人，就直接返回，不造成伤害
+            return; 
         }
         
-        // 将 GetComponent 改为 GetComponentInParent，这样更稳健
+        
         IDamageable damageable = other.GetComponentInParent<IDamageable>();
         if (damageable != null)
         {

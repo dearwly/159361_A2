@@ -26,13 +26,13 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float powerUpDuration = 30f;
     private float powerUpTimer;
 
-    // --- 私有UI引用 ---
+    
     private Slider healthSlider;
     private Slider staminaSlider;
     private TextMeshProUGUI flaskQuantityText;
     private GameObject powerUpIcon;
 
-    // --- 事件委托 ---
+    
     public delegate void HealthChangedDelegate(float newHealth, float maxHealth);
     public event HealthChangedDelegate OnHealthChanged;
     public delegate void StaminaChangedDelegate(float newStamina, float maxStamina);
@@ -47,7 +47,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         CurrentStamina = maxStamina;
         playerController = GetComponent<PlayerController>();
 
-        // 自动寻找UI元素
+        
         GameObject healthBarObject = GameObject.FindGameObjectWithTag("HealthBar");
         if (healthBarObject != null) healthSlider = healthBarObject.GetComponent<Slider>();
 
@@ -86,7 +86,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
-        // 如果已经死了，就不再接受伤害
+        
         if (playerController != null && playerController.isDead) return;
 
         if (playerController != null && !playerController.IsCastingSkill)
@@ -106,7 +106,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
             if (CurrentHealth <= 0)
             {
-                Die(hitNormal); // 将受击方向传递给死亡函数
+                Die(hitNormal); 
             }
         }
     }
@@ -179,24 +179,24 @@ public class PlayerStats : MonoBehaviour, IDamageable
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
     
-    /// <summary>
-    /// 【核心修改】玩家死亡时调用的函数
-    /// </summary>
+    
+    
+    
     private void Die(Vector3 hitNormal)
     {
-        // 检查玩家控制器是否已经标记为死亡，防止重复调用
+        
         if (playerController != null && playerController.isDead) return;
 
         Debug.Log("Player has died.");
         
-        // 触发玩家控制器中的死亡动画逻辑
+        
         if (playerController != null)
         {
             playerController.TriggerDeathAnimation(hitNormal);
         }
 
-        // ======[ 【核心新增】在这里通知GameManager ]======
-        // 检查GameManager实例是否存在，然后调用OnPlayerDied函数
+        
+        
         if (GameManager.Instance != null)
         {
             GameManager.Instance.OnPlayerDied();
@@ -205,7 +205,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         {
             Debug.LogWarning("GameManager.Instance not found. Cannot display Death Panel.");
         }
-        // ===============================================
+        
     }
 
     private void UpdateUI()

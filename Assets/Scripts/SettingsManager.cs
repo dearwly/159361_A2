@@ -84,23 +84,23 @@ public class SettingsManager : MonoBehaviour
     {
         Debug.Log("QuitToMainMenu() 函数被成功调用！");
 
-        // 步骤 1: 无论如何，先恢复时间和鼠标状态
+        
         Time.timeScale = 1f;
         isPaused = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // 步骤 2: 【核心修复】检查当前是否已经在主菜单
+        
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            // 如果是，我们根本不需要加载场景。
-            // 我们只需要做“关闭设置”这个动作就行了。
-            // 调用我们现有的CloseSettings()函数是最好的选择。
+            
+            
+            
             CloseSettings();
         }
         else
         {
-            // 如果在其他场景（例如游戏场景），才执行完整的清理和加载流程
+            
             if (settingsPanelInstance != null)
             {
                 Destroy(settingsPanelInstance);
@@ -112,20 +112,20 @@ public class SettingsManager : MonoBehaviour
 
     public void SetVolume(float volume)
 {
-    // 设置全局音量（主要影响所有3D音效）
+    
     AudioListener.volume = volume; 
     
-    // 调用AudioManager来专门设置BGM的音量
+    
     if (AudioManager.Instance != null)
     {
         AudioManager.Instance.SetBGMVolume(volume);
     }
 
-    // 保存设置
+    
     PlayerPrefs.SetFloat("MasterVolume", volume);
 }
     
-    // RebindUIElements 函数保持不变
+    
     private void RebindUIElements()
     {
         if (settingsPanelInstance == null) return;

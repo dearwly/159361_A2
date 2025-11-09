@@ -7,10 +7,10 @@ public class BGMTrigger : MonoBehaviour
 
     void Start()
     {
-        // 检查AudioManager是否存在
+        
         if (AudioManager.Instance != null)
         {
-            // 调用AudioManager的切换音乐方法
+            
             AudioManager.Instance.SwitchBGM(sceneBGM);
         }
         else
