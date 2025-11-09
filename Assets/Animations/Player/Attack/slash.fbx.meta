@@ -55,7 +55,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.1557789
+      - time: 0.24249476
         functionName: Attack_ConsumeStamina
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -71,6 +71,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.4649297
         functionName: AnimationEvent_DisableWeaponCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.25425565
+        functionName: AnimationEvent_PlaySwingSound
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

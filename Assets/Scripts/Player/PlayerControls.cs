@@ -1,22 +1,22 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems; // 用于UI事件检测
+using UnityEngine.EventSystems; 
 
-[RequireComponent(typeof(CharacterController), typeof(AudioSource))] // 确保对象上总有这两个组件
+[RequireComponent(typeof(CharacterController), typeof(AudioSource))] 
 public class PlayerController : MonoBehaviour
 {
-    // --- 核心组件引用 ---
+    
     private CharacterController controller;
     private Animator animator;
     private Transform mainCameraTransform;
     private PlayerStats playerStats;
-    private AudioSource audioSource; // 【新增】AudioSource组件的引用
+    private AudioSource audioSource; 
 
-    // --- 状态标志 ---
+    
     public bool isDead = false;
     private bool sprintInputHeld = false;
 
-    // --- 可配置参数 ---
+    
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 3.0f;
     [SerializeField] private float runSpeed = 7.0f;
@@ -42,12 +42,12 @@ public class PlayerController : MonoBehaviour
     public GameObject swordGlowVFX;
     public Transform shockwaveSpawnPoint;
 
-    // ======[ 【新增】音效设置 ]======
+    
     [Header("Sound Effects")]
     [Tooltip("将单个挥剑音效文件拖到这里")]
-    public AudioClip swingSound; // 用于存放挥剑音效
+    public AudioClip swingSound; 
 
-    // --- 属性 ---
+    
     public bool IsGrounded { get; private set; }
     public bool isAttacking => animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
     public bool IsInAirborneState => animator.GetCurrentAnimatorStateInfo(0).IsTag("Airborne");
@@ -62,47 +62,43 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        // 获取所有必要的组件
+        
         playerStats = GetComponent<PlayerStats>();
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
         mainCameraTransform = Camera.main.transform;
         
-        // 【修改】获取AudioSource组件，并进行安全检查
+        
         audioSource = GetComponent<AudioSource>();
         if(audioSource == null)
         {
-            // 如果找不到，就自动添加一个，并进行基本配置
+            
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
-            audioSource.spatialBlend = 1.0f; // 设置为3D音效
+            audioSource.spatialBlend = 1.0f; 
         }
 
-        // 确保武器伤害脚本能找到它的主人
+        
         GetComponentInChildren<WeaponDamage>().SetOwner(this.gameObject);
     }
 
-    // --- 输入处理函数 (Input System Callbacks) ---
+    
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (EventSystem.current.IsPointerOverGameObject()) return;
         
-        // 检查所有攻击条件是否满足
+        
         if (context.performed && !IsInAirborneState && !IsRolling && !IsBlocking && playerStats.HasEnoughStamina(attackCost) && !IsCastingSkill)
         {
-            // 触发动画
+            
             animator.SetTrigger("Attack");
 
-            // ======[ 【核心修改】直接在这里播放音效 ]======
-            if (audioSource != null && swingSound != null)
-            {
-                audioSource.PlayOneShot(swingSound);
-            }
-            // ===============================================
+
+            
         }
     }
 
-    // ... (其他所有On...开头的输入函数都保持不变)
+    
     public void OnSprint(InputAction.CallbackContext context)
     {
         if (EventSystem.current.IsPointerOverGameObject()) return;
@@ -159,7 +155,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    // --- 核心更新循环 ---
+    
     void Update()
     {
         if (isDead) { animator.applyRootMotion = true; return; }
@@ -177,7 +173,7 @@ public class PlayerController : MonoBehaviour
         UpdateAnimator();
     }
 
-    // --- 辅助函数 ---
+    
     private void HandleCursor()
     {
         if (Time.timeScale == 0f) { return; }
@@ -240,6 +236,19 @@ public class PlayerController : MonoBehaviour
     {
         if (weaponCollider != null) { Debug.Log("开启武器碰撞"); weaponCollider.enabled = true; }
     }
+    
+
+
+    public void AnimationEvent_PlaySwingSound()
+    {
+        
+        if (audioSource != null && swingSound != null)
+        {
+            
+            audioSource.PlayOneShot(swingSound);
+        }
+    }
+
     public void AnimationEvent_DisableWeaponCollider()
     {
         if (weaponCollider != null) { Debug.Log("关闭武器碰撞"); weaponCollider.enabled = false; }
